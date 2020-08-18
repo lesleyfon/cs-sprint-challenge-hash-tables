@@ -10,14 +10,17 @@ def reconstruct_trip(tickets, length):
     YOUR CODE HERE
     """
     route = [None]*length
+
     hash_map = {}
+
     for i in range(length):
         if tickets[i].source == "NONE":
             route[0] = tickets[i].destination
 
-        if tickets[i].destination == "NONE":
+        elif tickets[i].destination == "NONE":
             route[length-1] = tickets[i].source
-        hash_map[tickets[i].source] = tickets[i].destination
+        else:
+            hash_map[tickets[i].source] = tickets[i].destination
 
     index = 1
     for source, destination in hash_map.items():
@@ -51,7 +54,7 @@ def test_long_case():
     expected = ["LAX", "SFO", "BHM", "FLG", "XNA", "SAP",
                 "SLC", "PIT", "ORD", "NONE"]
 
-    reconstruct_trip(tickets, 10)
+    print(reconstruct_trip(tickets, 10))
 
 
 test_long_case()
